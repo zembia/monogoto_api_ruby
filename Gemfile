@@ -5,7 +5,7 @@ source "https://rubygems.org"
 gemspec
 
 group :development, :test do
-    gem "aweasome_print"
+    gem "awesome_print"
     gem "byebug"
     gem "webmock"
 end
