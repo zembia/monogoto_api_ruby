@@ -22,6 +22,7 @@ module MonogotoApi
             output
         end
 
+        # Parser of single element of API ping response
         def self.parse(hash_ping)
             new(
                 host: hash_ping["host"],
