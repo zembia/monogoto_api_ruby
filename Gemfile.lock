@@ -22,9 +22,7 @@ GEM
     mini_mime (1.1.5)
     multi_xml (0.6.0)
     public_suffix (5.0.5)
-    rexml (3.3.2)
-      strscan
-    strscan (3.1.0)
+    rexml (3.4.1)
     webmock (3.23.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
@@ -40,4 +38,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   2.4.22
+   2.6.3
