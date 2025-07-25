@@ -18,6 +18,7 @@ module MonogotoApi
             @customer_id = jwt_response["CustomerId"]
         end
 
+
         def things
             resp = get("/things", headers: auth_header)
             MonogotoApi::Thing.parse_many(resp.parsed_response)
@@ -37,10 +38,12 @@ module MonogotoApi
             MonogotoApi::SessionStatus.parse(resp.parsed_response)
         end
 
-        def thing_events(iccid)
+        def thing_events(iccid, limit: 20 )
+            body = { "ThingIdELK" => "ThingId_ICCID_#{ iccid }", "limit" => limit }
+            # body.merge!(opts) if opts.any?
             resp = post(
                 "/thing/searchCDR",
-                body: { "ThingIdELK" => "ThingId_ICCID_#{ iccid }" },
+                body: ,
                 headers: apikey_headers
             )
             MonogotoApi::Event.parse_many(resp.parsed_response["hits"])
