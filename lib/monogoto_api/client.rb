@@ -59,6 +59,11 @@ module MonogotoApi
             MonogotoApi::Ping::List.parse(resp)
         end
 
+        def thing_refresh_connection(iccid)
+            resp = get("/thing/ThingId_ICCID_#{ iccid }/refreshConnection", headers: auth_header)
+            resp.success?
+        end
+
         private
 
         def auth_header
