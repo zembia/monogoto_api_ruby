@@ -17,6 +17,7 @@ Gem::Specification.new do |spec|
     spec.metadata = {
         "rubygems_mfa_required" => "true"
     }
+    spec.add_development_dependency "dotenv"
     spec.add_dependency "httparty", "~> 0.21", ">= 0.21.0"
     if RUBY_VERSION >= "3.4.0"
         spec.add_dependency "base64"
