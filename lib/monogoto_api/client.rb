@@ -46,7 +46,7 @@ module MonogotoApi
                 body: ,
                 headers: apikey_headers
             )
-            MonogotoApi::Event.parse_many(resp.parsed_response["hits"])
+            MonogotoApi::Event::List.parse(resp)
         end
 
         def thing_ping(iccid)

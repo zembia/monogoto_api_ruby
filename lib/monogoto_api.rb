@@ -2,6 +2,7 @@
 
 require_relative "monogoto_api/client"
 require_relative "monogoto_api/event"
+require_relative "monogoto_api/event/list"
 require_relative "monogoto_api/ip"
 require_relative "monogoto_api/ping"
 require_relative "monogoto_api/ping/list"

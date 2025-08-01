@@ -2,6 +2,8 @@
 
 module MonogotoApi
     class Event
+        attr_reader :severity, :msg, :msg_type, :timestamp, :data_type
+
         def initialize(**attributes)
             @severity  = attributes[:severity]
             @msg       = attributes[:msg]
