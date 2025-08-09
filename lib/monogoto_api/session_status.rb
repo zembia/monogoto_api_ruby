@@ -3,6 +3,7 @@
 module MonogotoApi
     class SessionStatus
         attr_reader :connection, :provision
+
         def initialize(**attributes)
             @provision = attributes[:provision]
             @connection = attributes[:connection]

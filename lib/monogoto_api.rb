@@ -12,6 +12,5 @@ require_relative "monogoto_api/version"
 
 module MonogotoApi
     class << self
-
     end
 end

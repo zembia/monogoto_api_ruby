@@ -6,19 +6,20 @@ Gem::Specification.new do |spec|
     spec.name                  = "monogoto_api"
     spec.version               = MonogotoApi::VERSION
     spec.authors               = ["Javier Contreras Ferrada"]
-    spec.email                 = [""]
+    spec.email                 = ["javier.contreras@zembia.cl"]
     spec.summary               = "Unofficial Ruby gem for Monogoto API"
-    spec.description           = "Unofficial Ruby gem for Monogoto API. Monogoto is a IoT connectivity management platform"
+    spec.description           = "Unofficial Ruby gem for Monogoto API. " \
+                                 "Monogoto is a IoT connectivity management platform"
     spec.homepage              = "https://github.com/zembia/monogoto_api_ruby"
     spec.license               = "MIT"
-    spec.files                 = Dir["lib/**/*.rb"]
+    spec.files                 = Dir["lib/**/*.rb", "LICENSE"]
     spec.require_paths         = ["lib"]
-    spec.required_ruby_version = ">= 2.6"
+    spec.required_ruby_version = ">= 3.2"
     spec.metadata = {
         "rubygems_mfa_required" => "true"
     }
-    spec.add_development_dependency "dotenv"
     spec.add_development_dependency "debug"
+    spec.add_development_dependency "dotenv"
     spec.add_dependency "httparty", "~> 0.21", ">= 0.21.0"
     if RUBY_VERSION >= "3.4.0"
         spec.add_dependency "base64"

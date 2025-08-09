@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 module MonogotoApi
+    # Thing refer to Monogoto SIM
     class Thing
         attr_reader :iccid, :imei, :operator, :state, :name, :ips
 

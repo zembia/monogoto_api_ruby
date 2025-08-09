@@ -58,3 +58,6 @@ build-iPhoneSimulator/
 .env
 
 GUIA.md
+
+# to avoid exposing sensitive data
+test/cassettes/
