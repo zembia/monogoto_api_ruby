@@ -1,5 +1,6 @@
 # Monogoto API Ruby Client
 
+[![Gem Version](https://badge.fury.io/rb/monogoto_api.svg?icon=si%3Arubygems&icon_color=%23ef2929)](https://badge.fury.io/rb/monogoto_api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE.txt)
 
 A simple and unofficial Ruby wrapper for the [Monogoto](https://www.monogoto.io/) IoT Connectivity API.
