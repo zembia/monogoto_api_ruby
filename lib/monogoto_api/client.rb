@@ -10,7 +10,7 @@ module MonogotoApi
 
         def initialize(user, password)
             auth = { "UserName" => user, "Password" => password }
-            jwt_response = self.class.post(
+            jwt_response = post(
                 "/Auth",
                 body: auth.to_json, headers: { "Content-Type" => "application/json" }
             )
@@ -75,11 +75,38 @@ module MonogotoApi
         end
 
         def get(path, headers: {})
-            self.class.get(path, headers:)
+            request { self.class.get(path, headers:) }
         end
 
         def post(path, body: {}, headers: {})
-            self.class.post(path, body:, headers:)
+            request { self.class.post(path, body:, headers:) }
+        end
+
+        def request
+            response = begin
+                yield
+            rescue SocketError, Timeout::Error, Errno::EINVAL, Errno::ECONNRESET,
+                   Errno::ECONNREFUSED, Errno::ENETUNREACH, Net::ProtocolError,
+                   OpenSSL::SSL::SSLError => e
+                raise MonogotoApi::ConnectionError, "Network connection failed: #{e.message}"
+            end
+
+            handle_response(response)
+        end
+
+        def handle_response(response)
+            return response if response.success?
+
+            case response.code
+            when 401, 403
+                raise MonogotoApi::UnauthorizedError, response
+            when 404
+                raise MonogotoApi::NotFoundError, response
+            when 500..599
+                raise MonogotoApi::ServerError, response
+            else
+                raise MonogotoApi::HTTPError, response
+            end
         end
     end
 end

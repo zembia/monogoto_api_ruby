@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative "monogoto_api/errors"
 require_relative "monogoto_api/client"
 require_relative "monogoto_api/event"
 require_relative "monogoto_api/event/list"

@@ -19,6 +19,10 @@ class TestMonogotoApi < Minitest::Test
         end
     end
 
+    def teardown
+        WebMock.reset!
+    end
+
     def test_get_thing_list
         VCR.use_cassette("thing_list") do
             things = @client.things
@@ -67,4 +71,50 @@ class TestMonogotoApi < Minitest::Test
             assert_kind_of MonogotoApi::Ping::List, ping
         end
     end
+
+    def test_initialize_unauthorized_error
+        WebMock.stub_request(:post, "https://console.monogoto.io/Auth")
+               .to_return(status: 401, body: '{"error": "Unauthorized"}')
+
+        assert_raises(MonogotoApi::UnauthorizedError) do
+            MonogotoApi::Client.new("bad_user", "bad_pass")
+        end
+    end
+
+    def test_unauthorized_error
+        WebMock.stub_request(:get, "https://console.monogoto.io/things")
+               .to_return(status: 401, body: '{"error": "Unauthorized"}')
+
+        assert_raises(MonogotoApi::UnauthorizedError) do
+            @client.things
+        end
+    end
+
+    def test_not_found_error
+        WebMock.stub_request(:get, "https://console.monogoto.io/things")
+               .to_return(status: 404, body: '{"error": "Not Found"}')
+
+        assert_raises(MonogotoApi::NotFoundError) do
+            @client.things
+        end
+    end
+
+    def test_server_error
+        WebMock.stub_request(:get, "https://console.monogoto.io/things")
+               .to_return(status: 500, body: "Internal Server Error")
+
+        assert_raises(MonogotoApi::ServerError) do
+            @client.things
+        end
+    end
+
+    def test_connection_error
+        WebMock.stub_request(:get, "https://console.monogoto.io/things")
+               .to_raise(SocketError.new("Failed to open TCP connection"))
+
+        assert_raises(MonogotoApi::ConnectionError) do
+            @client.things
+        end
+    end
 end
+
