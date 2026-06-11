@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
     }
     spec.add_development_dependency "debug"
     spec.add_development_dependency "dotenv"
-    spec.add_dependency "httparty", "~> 0.21", ">= 0.21.0"
+    spec.add_dependency "httparty", "~> 0.24"
     if RUBY_VERSION >= "3.4.0"
         spec.add_dependency "base64"
         spec.add_dependency "csv"
